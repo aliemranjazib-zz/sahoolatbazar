@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "426813047618",
+    "project_id": "sahoolat-bazar",
+    "storage_bucket": "sahoolat-bazar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426813047618:android:3f0fcc00303eeac1507edb",
+        "android_client_info": {
+          "package_name": "com.example.sahoolar_bazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426813047618-hm3mf0je48fmffoa4qu3gm36kjbfm37j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0EDJYMLbTZwKSflrFVF1J_jcF4y4Hzps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426813047618-hm3mf0je48fmffoa4qu3gm36kjbfm37j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
