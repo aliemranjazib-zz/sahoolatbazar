@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sahoolar_bazar">
+    package="com.sahulat.bazar">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
         android:label="sahoolar_bazar"
         android:icon="@mipmap/ic_launcher">

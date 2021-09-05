@@ -13,7 +13,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 4), () {
       Navigator.push(context, MaterialPageRoute(builder: (_) => MainPage()));
     });
   }
@@ -23,7 +23,12 @@ class _SpalshScreenState extends State<SpalshScreen> {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(child: Image.asset('aseets/logo.jpg')),
+          Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(35.0),
+                child: Image.asset('asset/logo.jpg'),
+              )),
           Expanded(child: Center(child: CircularProgressIndicator())),
         ],
       ),

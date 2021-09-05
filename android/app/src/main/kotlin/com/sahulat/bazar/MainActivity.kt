@@ -1,4 +1,4 @@
-package com.example.sahoolar_bazar
+package com.sahulat.bazar
 
 import io.flutter.embedding.android.FlutterActivity
 
