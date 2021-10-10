@@ -19,8 +19,8 @@ class AddProduct extends StatelessWidget {
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => HomepPage()));
+                // Navigator.of(context)
+                //     .push(MaterialPageRoute(builder: (_) => HomepPage()));
               },
               child: Text(
                 'switch to user',
@@ -38,7 +38,7 @@ class AddProduct extends StatelessWidget {
                 child: Form(
                     child: Column(
                   children: [
-                    Expanded(flex: 2, child: Image.asset('asset/logo.jpg')),
+                    Expanded(flex: 1, child: Image.asset('asset/logo.jpg')),
                     Expanded(
                       child: TextFormField(
                         controller: pname,
@@ -66,6 +66,14 @@ class AddProduct extends StatelessWidget {
                             prefixIcon: Icon(Icons.lock)),
                       ),
                     ),
+                    Expanded(
+                        child: Container(
+                      height: 300,
+                      color: Colors.grey.withOpacity(0.5),
+                      child: Center(
+                        child: InkWell(child: Icon(Icons.add)),
+                      ),
+                    )),
                     MaterialButton(
                       color: Colors.red,
                       onPressed: () {

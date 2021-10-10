@@ -32,8 +32,8 @@ class LoginScreen extends StatelessWidget {
       });
       var u = auth.currentUser.uid;
       if (u != null) {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => HomepPage()), (route) => false);
+        // Navigator.of(context).pushAndRemoveUntil(
+        //     MaterialPageRoute(builder: (_) => HomepPage()), (route) => false);
       }
     }
   }

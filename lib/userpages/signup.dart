@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
       Map userMap = {'name': fC.text, 'email': eC.text, 'password': pC.text};
       var u = auth.currentUser.uid;
       if (u != null) {
-        Navigator.push(context, MaterialPageRoute(builder: (c) => HomepPage()));
+        // Navigator.push(context, MaterialPageRoute(builder: (c) => HomepPage()));
       }
     }
   }

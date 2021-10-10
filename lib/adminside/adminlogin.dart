@@ -14,12 +14,11 @@ class AdminLogin extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
               children: [
                 Center(child: Text("SIGNIN AS ADMIN")),
                 Container(
-                  height: 600,
+                  height: 500,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(30.0),
