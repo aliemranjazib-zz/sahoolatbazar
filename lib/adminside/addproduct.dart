@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sahoolar_bazar/adminside/addproduct.dart';
 import 'package:sahoolar_bazar/components/progressbar.dart';
-import 'package:sahoolar_bazar/userpages/homepage..dart';
-import 'package:sahoolar_bazar/userpages/login.dart';
 
 class AddProduct extends StatelessWidget {
   TextEditingController pname = TextEditingController();

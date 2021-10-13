@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sahoolar_bazar/adminside/addcategry.dart';
 import 'package:sahoolar_bazar/adminside/addproduct.dart';
+import 'package:sahoolar_bazar/adminside/addproducts/showmaincaetgory.dart';
 import 'package:sahoolar_bazar/components/mydrawer.dart';
-
-import 'addsubcategory.dart';
 
 class AdminPage extends StatelessWidget {
   @override
@@ -61,8 +60,8 @@ class AdminPage extends StatelessWidget {
             // ),
             InkWell(
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => AddForm()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => ShowAdminMainCategoryPage()));
               },
               child: Container(
                 width: 200,
@@ -76,39 +75,39 @@ class AdminPage extends StatelessWidget {
               ),
             ),
 
-            InkWell(
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => AddProduct()));
-              },
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(color: Colors.amber, boxShadow: []),
-                child: Center(
-                    child: Text(
-                  'ADD PRODUCT',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context)
+            //         .push(MaterialPageRoute(builder: (_) => AddProduct()));
+            //   },
+            //   child: Container(
+            //     width: 200,
+            //     height: 200,
+            //     decoration: BoxDecoration(color: Colors.amber, boxShadow: []),
+            //     child: Center(
+            //         child: Text(
+            //       'ADD PRODUCT',
+            //       style: TextStyle(color: Colors.black, fontSize: 20),
+            //     )),
+            //   ),
+            // ),
 
-            InkWell(
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => AddProduct()));
-              },
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(color: Colors.amber, boxShadow: []),
-                child: Center(
-                    child: Text(
-                  'ADD PRODUCT',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                )),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context)
+            //         .push(MaterialPageRoute(builder: (_) => AddProduct()));
+            //   },
+            //   child: Container(
+            //     width: 200,
+            //     height: 200,
+            //     decoration: BoxDecoration(color: Colors.amber, boxShadow: []),
+            //     child: Center(
+            //         child: Text(
+            //       'ADD PRODUCT',
+            //       style: TextStyle(color: Colors.black, fontSize: 20),
+            //     )),
+            //   ),
+            // ),
           ],
         ),
       ),

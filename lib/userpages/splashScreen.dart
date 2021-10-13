@@ -1,7 +1,32 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sahoolar_bazar/userpages/mainpage.dart';
+import 'package:sahoolar_bazar/userpages/auth/logi_page.dart';
+import 'package:sahoolar_bazar/userpages/homepage.dart';
+
+class SplashInitPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return SpalshScreen();
+          }
+          if (!snapshot.hasData || snapshot.data == null) {
+            return LoginPage();
+          } else if (snapshot.data.email != null) {
+            // AppUser.set(snapshot.data.phoneNumber);
+          }
+
+          return SpalshScreen();
+        },
+      ),
+    );
+  }
+}
 
 class SpalshScreen extends StatefulWidget {
   @override
@@ -9,13 +34,19 @@ class SpalshScreen extends StatefulWidget {
 }
 
 class _SpalshScreenState extends State<SpalshScreen> {
+  Timer _timer;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 4), () {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => MainPage()));
+    _timer = Timer(Duration(seconds: 4), () {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
     });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override

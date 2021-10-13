@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahoolar_bazar/adminside/addcategry.dart';
+import 'package:sahoolar_bazar/adminside/addproducts/showcategorypage.dart';
 import 'package:sahoolar_bazar/adminside/adminlogin.dart';
 import 'package:sahoolar_bazar/category/main_category/main_category_model.dart';
 import 'package:sahoolar_bazar/components/mydrawer.dart';
 import 'package:sahoolar_bazar/userpages/productspages/sub_category_prpducts.dart';
 import 'package:sahoolar_bazar/utils/decorations.dart';
 
-class HomePage extends StatelessWidget {
+class ShowAdminMainCategoryPage extends StatelessWidget {
   var search = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => SubCategoryProducts(
+                                    builder: (_) => ShowCategoryAdminPage(
                                           title: e.name,
                                         )));
                           },

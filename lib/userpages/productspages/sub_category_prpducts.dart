@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahoolar_bazar/components/mydrawer.dart';
+import 'package:sahoolar_bazar/userpages/productspages/showproduct.dart';
 import 'package:sahoolar_bazar/utils/styles.dart';
 
 class SubCategoryProducts extends StatefulWidget {
@@ -87,7 +88,7 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
                     }
 
                     if (!snapshot.hasData) {
-                      return Text("Document does not exist");
+                      return Center(child: CircularProgressIndicator());
                     }
                     return Container(
                       child: GridView.builder(
@@ -101,27 +102,45 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
                         itemBuilder: (BuildContext context, int index) {
                           final data = snapshot.data.docs[index];
 
-                          return Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  data['image '],
-                                  height: 140,
-                                  width: 140,
-                                  fit: BoxFit.cover,
-                                ),
+                          return Container(
+                            // decoration: BoxDecoration(
+                            //   boxShadow: [
+                            //     BoxShadow(
+                            //         color: Colors.grey.withOpacity(0.2),
+                            //         blurRadius: 5,
+                            //         spreadRadius: 5,
+                            //         offset: Offset(3, 3)),
+                            //   ],
+                            // ),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (c) => ShowProductPage(
+                                            title: data['title'])));
+                              },
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      data['image '],
+                                      height: 140,
+                                      width: 140,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      data['title'],
+                                      textAlign: TextAlign.center,
+                                      style: h1,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              // SizedBox(
-                              //   height: 10,
-                              // ),
-                              Expanded(
-                                child: Text(
-                                  data['title'],
-                                  style: h1,
-                                ),
-                              ),
-                            ],
+                            ),
                           );
                         },
                       ),

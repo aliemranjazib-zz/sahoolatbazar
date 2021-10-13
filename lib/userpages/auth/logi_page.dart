@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sahoolar_bazar/adminside/adminlogin.dart';
 import 'package:sahoolar_bazar/components/progressbar.dart';
 import 'package:sahoolar_bazar/constants/constants.dart';
 import 'package:sahoolar_bazar/userpages/auth/signup_page.dart';
@@ -136,6 +137,27 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                       ),
                                     ],
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      text: 'Sign In as Admin',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          HapticFeedback.lightImpact();
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (c) =>
+                                                      AdminLoginPage()));
+                                          Fluttertoast.showToast(
+                                            msg:
+                                                'Create a new Account button pressed',
+                                          );
+                                        },
+                                    ),
                                   ),
                                   SizedBox(height: size.width * .3),
                                   InkWell(

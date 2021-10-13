@@ -6,12 +6,14 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AddForm extends StatefulWidget {
+class AddProductAdminPage extends StatefulWidget {
+  String title;
+  AddProductAdminPage({this.title});
   @override
-  _AddFormState createState() => _AddFormState();
+  _AddProductAdminPageState createState() => _AddProductAdminPageState();
 }
 
-class _AddFormState extends State<AddForm> {
+class _AddProductAdminPageState extends State<AddProductAdminPage> {
   TextEditingController nameC = TextEditingController();
   TextEditingController descriptionC = TextEditingController();
   TextEditingController catagoryC = TextEditingController();
@@ -47,7 +49,7 @@ class _AddFormState extends State<AddForm> {
       'name': nameC.text,
       'namesearch': setSearchParam('name'),
       'description': descriptionC.text,
-      'Product catagory': catagoryC.text,
+      'Product catagory': widget.title,
       'Serial Code': serialC.text,
       'Price': priceC.text,
       //'Added By': user.uid,
@@ -97,22 +99,9 @@ class _AddFormState extends State<AddForm> {
   @override
   Widget build(BuildContext context) {
     final style = TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold);
-    var genderlist = [
-      'Electronics',
-      'Accessories',
-      'Home Appliances',
-      'Health & Beauty',
-      'Babies & Toys',
-      'Groceries & Pets',
-      'Lifestyle',
-      'Fashion',
-      'Mens Fashion',
-      'Watches & Jewelery'
-    ];
-    var genderDefaultValue = 'Electronics';
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dukaan Seller"),
+        title: Text(widget.title),
       ),
       backgroundColor: Colors.white70,
       body: SingleChildScrollView(
@@ -151,38 +140,6 @@ class _AddFormState extends State<AddForm> {
                             ),
                             hintText: "Product Name",
                           )),
-                      SizedBox(height: 20.h),
-                      DropdownButtonFormField(
-                        onSaved: (v) {
-                          catagoryC.text = v;
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            catagoryC.text = value;
-                          });
-                        },
-                        value: genderDefaultValue,
-                        items: genderlist
-                            .map((e) => DropdownMenuItem(
-                                value: e, child: Text(e.toString())))
-                            .toList(),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
-                            ),
-                          ),
-                          filled: true,
-                          fillColor: Color(0xFFF2F3F5),
-                          hintStyle: TextStyle(
-                            color: Color(0xFF666666),
-                          ),
-                          hintText: "Product Catagory",
-                        ),
-                      ),
                       SizedBox(height: 20.h),
                       TextFormField(
                           onFieldSubmitted: (v) {
