@@ -15,9 +15,10 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.deepPurple),
+          iconTheme: IconThemeData(color: Colors.blue),
           centerTitle: true,
-          title: Text('HOME PAGE', style: TextStyle(color: Colors.deepPurple)),
+          title:
+              Text('HOME PAGE', style: TextStyle(color: Colors.blue.shade300)),
         ),
         drawer: MyDrawer(),
         body: Padding(
@@ -55,8 +56,8 @@ class HomePage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   gradient: LinearGradient(colors: [
-                                    Colors.red,
-                                    Colors.blue,
+                                    Colors.green.shade200,
+                                    Colors.blue.shade300,
                                   ])),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -65,8 +66,8 @@ class HomePage extends StatelessWidget {
                                     children: [
                                       Image.network(
                                         e.image,
-                                        width: 50,
-                                        height: 50,
+                                        width: 90,
+                                        height: 90,
                                       ),
                                       Expanded(
                                         child: Column(
@@ -82,7 +83,7 @@ class HomePage extends StatelessWidget {
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 25,
+                                                    fontSize: 20,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -95,7 +96,7 @@ class HomePage extends StatelessWidget {
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 14,
+                                                    fontSize: 15,
                                                   ),
                                                 ),
                                               ),

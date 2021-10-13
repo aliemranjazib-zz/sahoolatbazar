@@ -15,17 +15,17 @@ List<MainCategoryModel> maincategorydata = [
       name: "SUPER MART",
       detail: "Grocery, home Care, Baby Care, Dailry",
       image:
-          'https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80'),
+          'https://o.remove.bg/downloads/858f8efb-2368-4e7f-9846-68141d1a6f8b/135859997-grocery-basket-with-food-assortment-flat-vector-illustration-supermarket-products-in-shopping-handba-removebg-preview.png'),
   MainCategoryModel(
       id: "2",
       name: "FRESH FRUITS & VEGETABLES",
       detail: "FRUITS DETAIL HERE",
       image:
-          'https://www.freepnglogos.com/uploads/vegetables-png/buy-high-quality-organic-vegetables-and-fruits-online-7.png'),
+          'https://o.remove.bg/downloads/e4059301-3fea-4325-a7ba-39719ae95a11/56975107-food-in-package-food-delivery-vector-flat-cartoon-illustration-removebg-preview.png'),
   MainCategoryModel(
       id: "3",
       name: "PHARMACY",
       detail: "Grocery, home Care, Baby Care, Dailry",
       image:
-          "https://banner2.cleanpng.com/20190705/cee/kisspng-online-pharmacy-pharmacist-pharmaceutical-drug-ind-5d1facc0c077e3.7102569115623569287884.jpg"),
+          "https://o.remove.bg/downloads/bffdc15d-57b6-4f7c-adb9-06fa380905fd/kissclipart-pharmacy-clipart-bangladesh-pharmacy-business-ca4ce301e0101321-removebg-preview.png"),
 ];

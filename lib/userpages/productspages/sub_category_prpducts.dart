@@ -22,12 +22,14 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.deepOrange),
+          iconTheme: IconThemeData(color: Colors.blue),
           title: Text(
             'Category',
             style: TextStyle(color: Colors.black),
           ),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.shop))],
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.add_shopping_cart))
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(14.0),
@@ -45,7 +47,7 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(
                       Icons.search,
-                      color: Colors.deepOrange,
+                      color: Colors.blue,
                     )),
               ),
               SizedBox(height: 20),
