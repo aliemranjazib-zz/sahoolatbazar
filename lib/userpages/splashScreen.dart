@@ -11,17 +11,17 @@ class SplashInitPage extends StatelessWidget {
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+        builder: (_, AsyncSnapshot<User> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SpalshScreen();
           }
           if (!snapshot.hasData || snapshot.data == null) {
             return LoginPage();
           } else if (snapshot.data.email != null) {
+            return SpalshScreen();
             // AppUser.set(snapshot.data.phoneNumber);
-          }
-
-          return SpalshScreen();
+          } else
+            return SpalshScreen();
         },
       ),
     );
@@ -38,15 +38,16 @@ class _SpalshScreenState extends State<SpalshScreen> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer(Duration(seconds: 4), () {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
+    _timer = Timer(Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacementNamed(HomePage.id);
+      // Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
+    _timer.cancel();
   }
 
   @override
@@ -60,7 +61,10 @@ class _SpalshScreenState extends State<SpalshScreen> {
                 padding: const EdgeInsets.all(35.0),
                 child: Image.asset('asset/logo.jpg'),
               )),
-          Expanded(child: Center(child: CircularProgressIndicator())),
+          Expanded(
+              child: Center(
+            child: CircularProgressIndicator(),
+          )),
         ],
       ),
     );

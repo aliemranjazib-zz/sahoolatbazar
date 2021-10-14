@@ -1,0 +1,198 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class DetailProductPage extends StatefulWidget {
+  String title;
+  String image;
+  bool popular;
+  String price;
+  String category;
+  String serialcode;
+  String description;
+  String weight;
+  DetailProductPage(
+      {this.title,
+      this.image,
+      this.category,
+      this.description,
+      this.popular,
+      this.price,
+      this.serialcode,
+      this.weight});
+
+  @override
+  State<DetailProductPage> createState() => _DetailProductPageState();
+}
+
+class _DetailProductPageState extends State<DetailProductPage> {
+  int total = 1;
+  @override
+  Widget build(BuildContext context) {
+    int newprice = int.parse(widget.price);
+    int totalprice = newprice * total;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(widget.image),
+            Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        " RS.${widget.price}",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "DETAIL",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        widget.description,
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+            Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.6),
+                        blurRadius: 5,
+                        spreadRadius: 5,
+                        offset: Offset(3, 3),
+                      ),
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Quantity",
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.withOpacity(0.3),
+                                ),
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (total > 1) total--;
+                                      });
+                                    },
+                                    icon: Icon(Icons.remove)),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text("$total"),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey.withOpacity(0.3),
+                                ),
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        total++;
+                                      });
+                                    },
+                                    icon: Icon(Icons.add)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      MaterialButton(
+                          minWidth: double.infinity,
+                          shape: StadiumBorder(),
+                          onPressed: () {},
+                          color: Colors.red,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              "Add to Cart Rs. $totalprice",
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ))
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+}

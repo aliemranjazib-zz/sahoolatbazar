@@ -163,7 +163,7 @@ class _AddcategroiesState extends State<Addcategroies> {
                       ),
                       MaterialButton(
                           minWidth: double.infinity,
-                          color: Colors.deepPurple,
+                          color: Colors.blue,
                           onPressed: () {
                             submit();
                           },

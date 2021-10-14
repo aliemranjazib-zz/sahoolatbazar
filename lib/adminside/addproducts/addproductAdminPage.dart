@@ -54,6 +54,7 @@ class _AddProductAdminPageState extends State<AddProductAdminPage> {
       'Price': priceC.text,
       //'Added By': user.uid,
       'image ': url,
+      "quantity": quantityC.text,
       'weight': weightC.text,
       //'Onsale': onsale,
       'Popular': ispapular,

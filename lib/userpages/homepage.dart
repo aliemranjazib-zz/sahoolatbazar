@@ -8,6 +8,7 @@ import 'package:sahoolar_bazar/userpages/productspages/sub_category_prpducts.dar
 import 'package:sahoolar_bazar/utils/decorations.dart';
 
 class HomePage extends StatelessWidget {
+  static const id = 'homepage';
   var search = TextEditingController();
   @override
   Widget build(BuildContext context) {

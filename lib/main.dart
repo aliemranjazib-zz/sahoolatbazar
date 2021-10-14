@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sahoolar_bazar/userpages/homepage.dart';
 import 'package:sahoolar_bazar/userpages/splashScreen.dart';
 
 void main() async {
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: SplashInitPage(),
+        routes: {
+          HomePage.id: (_) => HomePage(),
+        },
       ),
     );
   }
