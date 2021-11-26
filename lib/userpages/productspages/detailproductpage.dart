@@ -1,5 +1,12 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sahoolar_bazar/cart/cart_page.dart';
+import 'package:sahoolar_bazar/components/progressbar.dart';
 
 class DetailProductPage extends StatefulWidget {
   String title;
@@ -33,6 +40,14 @@ class _DetailProductPageState extends State<DetailProductPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => CartPage()));
+              },
+              icon: Icon(Icons.add_shopping_cart))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -175,7 +190,25 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       MaterialButton(
                           minWidth: double.infinity,
                           shape: StadiumBorder(),
-                          onPressed: () {},
+                          onPressed: () async {
+                            ProgressBar(title: 'adding');
+                            // FirebaseFirestore firestore = FirebaseFirestore.instance;
+                            CollectionReference users =
+                                FirebaseFirestore.instance.collection('cart');
+                            users.add({
+                              'title': widget.title,
+                              'quanity': total,
+                              'price': totalprice,
+                              'image': widget.image,
+                            }).then((value) {
+                              Fluttertoast.showToast(
+                                  msg: 'product added successfully');
+                            }).catchError((error) {
+                              Navigator.pop(context);
+
+                              Fluttertoast.showToast(msg: error.toString());
+                            });
+                          },
                           color: Colors.red,
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),

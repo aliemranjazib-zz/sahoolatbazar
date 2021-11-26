@@ -21,6 +21,7 @@ dependencies:
   image_picker:
   firebase_storage: ^10.0.4
   flutter_screenutil: ^5.0.0+2
+  get: ^4.3.8
 
 dev_dependencies:
   flutter_test:
