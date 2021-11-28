@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sahoolar_bazar/cart/cart_page.dart';
 import 'package:sahoolar_bazar/components/mydrawer.dart';
 import 'package:sahoolar_bazar/userpages/productspages/showproduct.dart';
 import 'package:sahoolar_bazar/utils/styles.dart';
@@ -21,15 +23,23 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
         drawer: MyDrawer(),
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
           centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.blue),
           title: Text(
             'Category',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
+          ),
+          toolbarHeight: 60,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20),
+            ),
           ),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_shopping_cart))
+            IconButton(
+                onPressed: () {
+                  Get.to(CartPage());
+                },
+                icon: Icon(Icons.add_shopping_cart))
           ],
         ),
         body: Padding(
@@ -45,7 +55,8 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
                 },
                 decoration: InputDecoration(
                     hintText: "Search for Items",
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
                     prefixIcon: Icon(
                       Icons.search,
                       color: Colors.blue,
@@ -73,10 +84,10 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
               Expanded(
                 child: StreamBuilder(
                   stream: (search != "" && search != null)
-                      ? FirebaseFirestore.instance
+                      ? (FirebaseFirestore.instance
                           .collection("category")
                           .where("namesearch", arrayContains: search)
-                          .snapshots()
+                          .snapshots())
                       : FirebaseFirestore.instance
                           .collection("category")
                           .where("category", isEqualTo: widget.title)

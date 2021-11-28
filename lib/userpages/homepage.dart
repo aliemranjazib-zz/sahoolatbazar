@@ -14,12 +14,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
           elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.blue),
           centerTitle: true,
-          title:
-              Text('HOME PAGE', style: TextStyle(color: Colors.blue.shade300)),
+          title: Text('HOME PAGE', style: TextStyle(color: Colors.white)),
+          toolbarHeight: 120,
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.vertical(
+              bottom: new Radius.elliptical(56, 56.0),
+            ),
+          ),
         ),
         drawer: MyDrawer(),
         body: Padding(
@@ -39,6 +42,7 @@ class HomePage extends StatelessWidget {
 
             //   ],
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: maincategorydata
                   .map((e) => Padding(
                         padding: const EdgeInsets.all(5.0),

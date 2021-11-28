@@ -5,8 +5,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:sahoolar_bazar/cart/cart_page.dart';
 import 'package:sahoolar_bazar/components/progressbar.dart';
+import 'package:sahoolar_bazar/constants/constants.dart';
 
 class DetailProductPage extends StatefulWidget {
   String title;
@@ -40,11 +42,17 @@ class _DetailProductPageState extends State<DetailProductPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        toolbarHeight: 60,
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => CartPage()));
+                Get.to(CartPage());
               },
               icon: Icon(Icons.add_shopping_cart))
         ],
@@ -54,7 +62,9 @@ class _DetailProductPageState extends State<DetailProductPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(widget.image),
+            Container(
+                constraints: BoxConstraints(minHeight: 100, maxHeight: 250),
+                child: Image.network(widget.image)),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -119,6 +129,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                   ),
                 )),
             Container(
+                alignment: Alignment.bottomRight,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     boxShadow: [
@@ -195,7 +206,9 @@ class _DetailProductPageState extends State<DetailProductPage> {
                             // FirebaseFirestore firestore = FirebaseFirestore.instance;
                             CollectionReference users =
                                 FirebaseFirestore.instance.collection('cart');
+                            var u = auth.currentUser.uid;
                             users.add({
+                              'uid': u,
                               'title': widget.title,
                               'quanity': total,
                               'price': totalprice,

@@ -51,7 +51,7 @@ class _AddcategroiesState extends State<Addcategroies> {
     await db.collection("category").add({
       'category': category.text,
       'title': title.text,
-      'namesearch': setSearchParam('title'),
+      'namesearch': setSearchParam(title.text),
       'image ': url,
       'Date Added': DateTime.now(),
     });

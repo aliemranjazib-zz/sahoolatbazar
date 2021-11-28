@@ -47,7 +47,7 @@ class _AddProductAdminPageState extends State<AddProductAdminPage> {
 
     await db.collection("products").add({
       'name': nameC.text,
-      'namesearch': setSearchParam('name'),
+      'namesearch': setSearchParam(nameC.text),
       'description': descriptionC.text,
       'Product catagory': widget.title,
       'Serial Code': serialC.text,

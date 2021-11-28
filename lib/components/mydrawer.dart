@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sahoolar_bazar/about.dart';
 import 'package:sahoolar_bazar/adminside/adminmainpage.dart';
+import 'package:sahoolar_bazar/cart/cart_page.dart';
 import 'package:sahoolar_bazar/constants/constants.dart';
 import 'package:sahoolar_bazar/userpages/auth/logi_page.dart';
 import 'package:sahoolar_bazar/userpages/homepage.dart';
+import 'package:sahoolar_bazar/userpages/productspages/showproduct.dart';
 import 'package:sahoolar_bazar/utils/styles.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -47,14 +51,43 @@ class MyDrawer extends StatelessWidget {
                 title: Text('Home'),
               ),
             ),
+            // InkWell(
+            //   onTap: () {
+            //     Get.to(ShowProductPage());
+            //   },
+            //   child: ListTile(
+            //     leading: Icon(Icons.shop),
+            //     title: Text('Products'),
+            //   ),
+            // ),
             InkWell(
               onTap: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => AdminPage()));
               },
               child: ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.admin_panel_settings_rounded),
                 title: Text('ADMIN'),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => CartPage()));
+              },
+              child: ListTile(
+                leading: Icon(Icons.production_quantity_limits),
+                title: Text('My Orders'),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => AboutPage()));
+              },
+              child: ListTile(
+                leading: Icon(Icons.home),
+                title: Text('About'),
               ),
             ),
             Divider(),

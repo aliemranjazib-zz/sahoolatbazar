@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sahoolar_bazar/cart/cart_page.dart';
 import 'package:sahoolar_bazar/userpages/productspages/detailproductpage.dart';
 
 go(Widget func, BuildContext context) {
@@ -14,7 +16,21 @@ class ShowProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 60,
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
         title: Text(title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(CartPage());
+              },
+              icon: Icon(Icons.add_shopping_cart))
+        ],
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -53,30 +69,45 @@ class ShowProductPage extends StatelessWidget {
                     // Navigator.push(
                     //     context, MaterialPageRoute(builder: (_)=>));
                   },
-                  child: Card(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.network(
-                            data[index]['image '],
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 3,
+                            spreadRadius: 3,
+                            offset: Offset(3, 3),
                           ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Expanded(
-                          child: Text(
-                            data[index]['name'],
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.network(
+                              data[index]['image '],
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        )
-                      ],
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Expanded(
+                            child: Text(
+                              data[index]['name'],
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );
