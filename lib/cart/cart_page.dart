@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:sahoolar_bazar/checkout/choeckout_page.dart';
 import 'package:sahoolar_bazar/components/mydrawer.dart';
@@ -134,36 +135,78 @@ class _CartPageState extends State<CartPage> {
                         });
                       },
                       background: Icon(Icons.delete),
-                      child: Container(
-                        constraints: BoxConstraints(
-                            maxWidth: double.infinity, maxHeight: 150),
-                        child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.4),
+                                  blurRadius: 3,
+                                  spreadRadius: 3,
+                                  offset: Offset(3, 3),
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4)),
+                          constraints: BoxConstraints(
+                              maxWidth: double.infinity, maxHeight: 120),
                           child: Row(
                             children: [
                               Image.network(
                                 data[index]['image'],
                                 height: 90,
                                 width: 90,
+                                fit: BoxFit.cover,
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    data[index]['title'],
+                                    data[index]['title']
+                                        .toString()
+                                        .toUpperCase(),
                                     style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text(
-                                    "${data[index]['quanity']}",
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                    ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Quantity",
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: 33,
+                                          minHeight: 33,
+                                          maxWidth: 33,
+                                          maxHeight: 33,
+                                        ),
+                                        color: Colors.grey.withOpacity(0.3),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(0.0),
+                                            child: Text(
+                                              "${data[index]['quanity']}",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Text(
-                                    "${data[index]['price']}",
+                                    "Rs. ${data[index]['price']}",
                                     style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 20,
                                     ),
                                   ),
                                 ],
@@ -215,23 +258,23 @@ class _CartPageState extends State<CartPage> {
                         minWidth: double.infinity,
                         shape: StadiumBorder(),
                         onPressed: () {
-                          //Get.to(CheckOutPage());
+                          Get.to(CheckOutPage());
                           var address;
-                          FirebaseFirestore.instance
-                              .collection('profile')
-                              .get()
-                              .then((QuerySnapshot querySnapshot) {
-                            querySnapshot.docs.forEach((doc) {
-                              print(doc['address']);
-                              if (doc['address'] != null) {
-                                return Get.to(CheckOutPage());
-                              } else {
-                                return Get.to(ProfilePage());
-                              }
-                            });
-                          });
+                          // FirebaseFirestore.instance
+                          //     .collection('profile')
+                          //     .get()
+                          //     .then((QuerySnapshot querySnapshot) {
+                          //   querySnapshot.docs.forEach((doc) {
+                          //     print(doc['address']);
+                          //     if (doc['address'] != null) {
+                          //       return Get.to(CheckOutPage());
+                          //     } else {
+                          //       return Get.to(ProfilePage());
+                          //     }
+                          //   });
+                          // });
                         },
-                        color: Colors.red,
+                        color: Colors.blue,
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Text(

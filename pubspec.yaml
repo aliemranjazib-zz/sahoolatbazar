@@ -23,6 +23,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   get: ^4.3.8
   flutter_launcher_icons: "^0.9.2"
+  awesome_dialog: ^2.1.1
 
 flutter_icons:
   android: "launcher_icon"
@@ -38,10 +39,28 @@ flutter:
   assets:
     - asset/
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Poppins-Regular
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+
+    - family: Poppins-Black
+      fonts:
+        - asset: fonts/Poppins-Black.ttf
+
+    - family: Poppins-Bold
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
+
+    - family: Poppins-Light
+      fonts:
+        - asset: fonts/Poppins-Light.ttf
+
+    - family: Poppins-Medium
+      fonts:
+        - asset: fonts/Poppins-Medium.ttf
+
+    - family: Poppins-SemiBold
+      fonts:
+        - asset: fonts/Poppins-SemiBold.ttf
+
