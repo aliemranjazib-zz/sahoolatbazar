@@ -151,10 +151,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                                       builder: (BuildContext
                                                               context) =>
                                                           LoginPage()));
-                                              Fluttertoast.showToast(
-                                                msg:
-                                                    'Create a new Account button pressed',
-                                              );
+                                              // Fluttertoast.showToast(
+                                              //   msg:
+                                              //       'Create a new Account button pressed',
+                                              // );
                                             },
                                         ),
                                       ),

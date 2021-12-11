@@ -37,7 +37,8 @@ class _LoginPageState extends State<LoginPage> {
     });
     var u = auth.currentUser.uid;
     if (u != null) {
-      Navigator.push(context, MaterialPageRoute(builder: (c) => HomePage()));
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (c) => HomePage()), (route) => false);
     }
   }
 
@@ -129,10 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                                                   MaterialPageRoute(
                                                       builder: (c) =>
                                                           SignUpPage()));
-                                              Fluttertoast.showToast(
-                                                msg:
-                                                    'Create a new Account button pressed',
-                                              );
+                                              // Fluttertoast.showToast(
+                                              //   msg:
+                                              //       'Create a new Account button pressed',
+                                              // );
                                             },
                                         ),
                                       ),
@@ -147,15 +148,17 @@ class _LoginPageState extends State<LoginPage> {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
                                           HapticFeedback.lightImpact();
-                                          Navigator.push(
+                                          Navigator.pushAndRemoveUntil(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (c) =>
-                                                      AdminLoginPage()));
-                                          Fluttertoast.showToast(
-                                            msg:
-                                                'Create a new Account button pressed',
-                                          );
+                                                      AdminLoginPage()),
+                                              (route) => false);
+
+                                          // Fluttertoast.showToast(
+                                          //   msg:
+                                          //       'Create a new Account button pressed',
+                                          // );
                                         },
                                     ),
                                   ),

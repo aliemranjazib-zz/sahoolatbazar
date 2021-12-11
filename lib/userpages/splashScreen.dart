@@ -17,9 +17,18 @@ class SplashInitPage extends StatelessWidget {
           }
           if (!snapshot.hasData || snapshot.data == null) {
             return LoginPage();
-          } else if (snapshot.data.email != null) {
+          }
+          if (snapshot.data.email != null) {
             return SpalshScreen();
             // AppUser.set(snapshot.data.phoneNumber);
+          }
+          if (snapshot.data.uid == null) {
+            return Container(
+              child: Text(
+                'PLEASE LOGIN FIRST',
+                style: TextStyle(fontSize: 30),
+              ),
+            );
           } else
             return SpalshScreen();
         },

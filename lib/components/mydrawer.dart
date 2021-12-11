@@ -60,16 +60,16 @@ class MyDrawer extends StatelessWidget {
             //     title: Text('Products'),
             //   ),
             // ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => AdminPage()));
-              },
-              child: ListTile(
-                leading: Icon(Icons.admin_panel_settings_rounded),
-                title: Text('ADMIN'),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context, MaterialPageRoute(builder: (_) => AdminPage()));
+            //   },
+            //   child: ListTile(
+            //     leading: Icon(Icons.admin_panel_settings_rounded),
+            //     title: Text('ADMIN'),
+            //   ),
+            // ),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -93,8 +93,10 @@ class MyDrawer extends StatelessWidget {
             Divider(),
             InkWell(
               onTap: () {
-                auth.signOut().whenComplete(() => Navigator.push(
-                    context, MaterialPageRoute(builder: (c) => LoginPage())));
+                auth.signOut().whenComplete(() => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (c) => LoginPage()),
+                    (route) => false));
               },
               child: ListTile(
                 leading: Icon(Icons.logout),

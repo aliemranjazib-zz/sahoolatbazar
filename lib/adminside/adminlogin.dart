@@ -1,5 +1,6 @@
 // IMAGE LINK : https://unsplash.com/photos/bOBM8CB4ZC4
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
@@ -21,12 +22,28 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
   var globalKey = GlobalKey<FormState>();
   TextEditingController eC = TextEditingController();
   TextEditingController pC = TextEditingController();
-
+  // db=FirebaseFirestore.instance;
   saveform(BuildContext context) async {
     if (globalKey.currentState.validate()) {
-      if (eC.text == "admin@gmail.com" && pC.text == "1234") {
-        Navigator.push(context, MaterialPageRoute(builder: (c) => AdminPage()));
-      }
+      Stream<QuerySnapshot> productRef =
+          FirebaseFirestore.instance.collection("admin").snapshots();
+      productRef.forEach((field) {
+        field.docs.asMap().forEach((index, data) {
+          if (eC.text == field.docs[index]['email'] &&
+              pC.text == field.docs[index]['password']) {
+            print(field.docs[index]['password']);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (c) => AdminPage()),
+                (route) => false);
+          }
+          //productName.add(field.documents[index]["name"]);
+        });
+      });
+//
+//
+//
+
     } else {
       Fluttertoast.showToast(
         msg: 'email and password is not correct',

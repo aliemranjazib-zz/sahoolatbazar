@@ -12,7 +12,7 @@ class AboutPage extends StatelessWidget {
             toolbarHeight: 100,
             elevation: 0.0,
             title: Text(
-              "SAHOLLAT BAZAR",
+              "SAHULAT BAZAR",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
