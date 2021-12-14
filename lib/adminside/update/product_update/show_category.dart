@@ -1,25 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sahoolar_bazar/adminside/addproducts/showcategorypage.dart';
-import 'package:sahoolar_bazar/adminside/adminlogin.dart';
+import 'package:sahoolar_bazar/adminside/update/product_update/show_category_product_for_update.dart';
 import 'package:sahoolar_bazar/category/main_category/main_category_model.dart';
-import 'package:sahoolar_bazar/components/mydrawer.dart';
-import 'package:sahoolar_bazar/userpages/productspages/sub_category_prpducts.dart';
-import 'package:sahoolar_bazar/utils/decorations.dart';
 
-class ShowAdminMainCategoryPage extends StatelessWidget {
-  var search = TextEditingController();
+class ShowCategoryForUpdate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          elevation: 0.0,
-          //  iconTheme: IconThemeData(color: Colors.white),
-          centerTitle: true,
-          title: Text('Main Category', style: TextStyle(color: Colors.white)),
+          title: Text('main category'),
         ),
-        // drawer: MyDrawer(),
         body: Padding(
             padding: const EdgeInsets.all(8.0),
             // child: Column(
@@ -37,6 +26,7 @@ class ShowAdminMainCategoryPage extends StatelessWidget {
 
             //   ],
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: maincategorydata
                   .map((e) => Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -45,7 +35,8 @@ class ShowAdminMainCategoryPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => ShowCategoryAdminPage(
+                                    builder: (_) =>
+                                        ShowCategoryProductForUpdate(
                                           title: e.name,
                                         )));
                           },
