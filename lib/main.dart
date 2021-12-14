@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins-Regular',
         ),
-        home: AdminPage(),
+        home: SplashInitPage(),
         routes: {
           HomePage.id: (_) => HomePage(),
         },
