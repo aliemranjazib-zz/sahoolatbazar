@@ -1,5 +1,6 @@
 // IMAGE LINK : https://unsplash.com/photos/bOBM8CB4ZC4
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
@@ -38,7 +39,16 @@ class _SignUpPageState extends State<SignUpPage> {
       Fluttertoast.showToast(msg: errmsg);
     });
     Map userMap = {'name': uC.text, 'email': eC.text, 'password': pC.text};
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    // this will upload the file and store url in the variable 'url'
     var u = auth.currentUser.uid;
+
+    await db.collection("user").add({
+      'name': uC.text,
+      'email': eC.text,
+      'uid': u,
+    });
+
     if (u != null) {
       Navigator.push(context, MaterialPageRoute(builder: (c) => HomePage()));
     }

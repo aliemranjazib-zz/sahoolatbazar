@@ -10,6 +10,44 @@ class CheckOutPage extends StatefulWidget {
 }
 
 class _CheckOutPageState extends State<CheckOutPage> {
+  Map<String, dynamic> mm = {};
+  String name = "";
+  int price = 0;
+
+  int quant = 0;
+
+  getcart() {
+    var u = auth.currentUser.uid;
+    print(u);
+    Stream<QuerySnapshot> productRef = FirebaseFirestore.instance
+        .collection("cart")
+        .where("uid", isEqualTo: u)
+        .snapshots();
+    productRef.forEach((field) {
+      field.docs.asMap().forEach((index, data) {
+        setState(() {
+          name = field.docs[index]["title"];
+          price = field.docs[index]["price"];
+          quant = field.docs[index]["quanity"];
+          // mm.addAll({
+          //   name: ,
+          //   'images': field.docs[index]["image"],
+
+          // });
+          print("okk $name");
+          // productName = productName + field.docs[index]["title"];
+          // images = field.docs[index]["image"];
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getcart();
+    super.initState();
+  }
+
   CollectionReference db = FirebaseFirestore.instance.collection('cart');
   var globalKey = GlobalKey<FormState>();
   TextEditingController uC = TextEditingController();
@@ -199,40 +237,22 @@ class _CheckOutPageState extends State<CheckOutPage> {
                     CollectionReference db =
                         FirebaseFirestore.instance.collection('checkout');
                     Map m = {};
-                    var u = auth.currentUser.uid;
-                    Stream<QuerySnapshot> productRef = FirebaseFirestore
-                        .instance
-                        .collection("cart")
-                        .where("uid", isEqualTo: u)
-                        .snapshots();
-                    productRef.forEach((field) {
-                      field.docs.asMap().forEach((index, data) {
-                        setState(() {
-                          m.addAll({
-                            'productName': field.docs[index]["title"],
-                            'images': field.docs[index]["image"],
-                            'price': field.docs[index]["price"],
-                            'quantity': field.docs[index]["quantity"],
-                          });
 
-                          // productName = productName + field.docs[index]["title"];
-                          // images = field.docs[index]["image"];
-                        });
-                      });
-                    });
                     db.add({
                       'name': uC.text,
                       'phone': phoneC.text,
                       'city': cityC.text,
                       'area': areaC.text,
                       'address': addressC.text,
-                      'product': m,
+                      'pname': name,
+                      'pquantity': quant,
                     }).whenComplete(() {
                       AwesomeDialog(
                         context: context,
                         dialogType: DialogType.SUCCES,
                         animType: AnimType.BOTTOMSLIDE,
                         title: 'Congratulations',
+                        btnOkColor: Colors.blue,
                         desc: 'Your Order Placed Successfully',
                         btnOkOnPress: () {},
                       )..show().then((value) {

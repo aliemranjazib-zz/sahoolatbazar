@@ -1,15 +1,55 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sahoolar_bazar/about.dart';
 import 'package:sahoolar_bazar/adminside/adminmainpage.dart';
 import 'package:sahoolar_bazar/cart/cart_page.dart';
 import 'package:sahoolar_bazar/constants/constants.dart';
+import 'package:sahoolar_bazar/terms/terms.dart';
 import 'package:sahoolar_bazar/userpages/auth/logi_page.dart';
 import 'package:sahoolar_bazar/userpages/homepage.dart';
 import 'package:sahoolar_bazar/userpages/productspages/showproduct.dart';
 import 'package:sahoolar_bazar/utils/styles.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
+  @override
+  _MyDrawerState createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  String name = "";
+  String email = "";
+  getcart() {
+    var u = auth.currentUser.uid;
+    print(u);
+    Stream<QuerySnapshot> productRef = FirebaseFirestore.instance
+        .collection("user")
+        .where("uid", isEqualTo: u)
+        .snapshots();
+    productRef.forEach((field) {
+      field.docs.asMap().forEach((index, data) {
+        setState(() {
+          name = field.docs[index]["name"];
+          email = field.docs[index]["email"];
+          // mm.addAll({
+          //   name: ,
+          //   'images': field.docs[index]["image"],
+
+          // });
+          print("okk $name");
+          // productName = productName + field.docs[index]["title"];
+          // images = field.docs[index]["image"];
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // getcart();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,18 +65,30 @@ class MyDrawer extends StatelessWidget {
                   child: Center(
                       child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Row(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: 30,
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              child: Icon(
+                                Icons.person,
+                                size: 50,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "$name",
+                                style: h1,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "GUEST",
-                          style: h1,
-                        ),
+                        Text("$email")
                       ],
                     ),
                   )),
@@ -90,7 +142,22 @@ class MyDrawer extends StatelessWidget {
                 title: Text('About'),
               ),
             ),
+
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => TermsPage()));
+              },
+              child: ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Terms and Condition'),
+              ),
+            ),
             Divider(),
+            ListTile(
+              leading: Text(""),
+              title: Text('Version 1.0'),
+            ),
             InkWell(
               onTap: () {
                 auth.signOut().whenComplete(() => Navigator.pushAndRemoveUntil(

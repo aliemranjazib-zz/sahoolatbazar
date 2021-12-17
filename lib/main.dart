@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:sahoolar_bazar/adminside/update/maincategory.dart';
 import 'package:sahoolar_bazar/userpages/homepage.dart';
+import 'package:sahoolar_bazar/userpages/productspages/sub_category_prpducts.dart';
 import 'package:sahoolar_bazar/userpages/profile_page.dart';
 import 'package:sahoolar_bazar/userpages/splashScreen.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins-Regular',
         ),
-        home: SplashInitPage(),
+        home: AdminPage(),
         routes: {
           HomePage.id: (_) => HomePage(),
         },

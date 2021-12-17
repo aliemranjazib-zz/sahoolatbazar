@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sahoolar_bazar/adminside/addcategry.dart';
-import 'package:sahoolar_bazar/adminside/adminlogin.dart';
 import 'package:sahoolar_bazar/category/main_category/main_category_model.dart';
 import 'package:sahoolar_bazar/components/mydrawer.dart';
 import 'package:sahoolar_bazar/userpages/productspages/sub_category_prpducts.dart';
-import 'package:sahoolar_bazar/utils/decorations.dart';
 
 class HomePage extends StatelessWidget {
   static const id = 'homepage';
@@ -26,7 +23,7 @@ class HomePage extends StatelessWidget {
         ),
         drawer: MyDrawer(),
         body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             // child: Column(
             //   children: [
 

@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sahoolar_bazar/utils/styles.dart';
 
-class AboutPage extends StatelessWidget {
+class TermsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +28,7 @@ class AboutPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'About',
+                    'Terms & Condition',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -44,9 +43,9 @@ class AboutPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Center(
                       child: Text(
-                        'EASY REACH OUT',
+                        'Updated at 2021-12-18',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -55,7 +54,7 @@ class AboutPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$about_data',
+                  '$terms_data',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 20,
