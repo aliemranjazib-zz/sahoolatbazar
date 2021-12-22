@@ -54,6 +54,7 @@ class _SubCategoryProductsState extends State<SubCategoryProducts> {
                   print(search);
                 },
                 decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
                     hintText: "Search for Items",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30)),

@@ -7,30 +7,29 @@ class TermsPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            centerTitle: true,
-            toolbarHeight: 100,
-            elevation: 0.0,
+            toolbarHeight: 70,
+            elevation: 8.0,
             title: Text(
               "SAHULAT BAZAR",
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: const EdgeInsets.all(10.0),
             child: ListView(
               children: [
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.topLeft,
                   child: Text(
                     'Terms & Condition',
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -38,14 +37,14 @@ class TermsPage extends StatelessWidget {
                 Divider(),
                 Container(
                   width: double.infinity,
-                  color: Colors.blueGrey,
+                  color: Colors.blue,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Center(
                       child: Text(
                         'Updated at 2021-12-18',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -57,7 +56,7 @@ class TermsPage extends StatelessWidget {
                   '$terms_data',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 14,
                   ),
                 ),
               ],

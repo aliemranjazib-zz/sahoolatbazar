@@ -36,7 +36,7 @@ class _MyDrawerState extends State<MyDrawer> {
           //   'images': field.docs[index]["image"],
 
           // });
-          print("okk $name");
+          print("okk  $name");
           // productName = productName + field.docs[index]["title"];
           // images = field.docs[index]["image"];
         });
@@ -103,25 +103,6 @@ class _MyDrawerState extends State<MyDrawer> {
                 title: Text('Home'),
               ),
             ),
-            // InkWell(
-            //   onTap: () {
-            //     Get.to(ShowProductPage());
-            //   },
-            //   child: ListTile(
-            //     leading: Icon(Icons.shop),
-            //     title: Text('Products'),
-            //   ),
-            // ),
-            // InkWell(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context, MaterialPageRoute(builder: (_) => AdminPage()));
-            //   },
-            //   child: ListTile(
-            //     leading: Icon(Icons.admin_panel_settings_rounded),
-            //     title: Text('ADMIN'),
-            //   ),
-            // ),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -132,32 +113,32 @@ class _MyDrawerState extends State<MyDrawer> {
                 title: Text('My Orders'),
               ),
             ),
+            Divider(),
             InkWell(
               onTap: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => AboutPage()));
               },
               child: ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.announcement_rounded),
                 title: Text('About'),
               ),
             ),
-
             InkWell(
               onTap: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => TermsPage()));
               },
               child: ListTile(
-                leading: Icon(Icons.settings),
+                leading: Icon(Icons.contact_support),
                 title: Text('Terms and Condition'),
               ),
             ),
-            Divider(),
             ListTile(
               leading: Text(""),
               title: Text('Version 1.0'),
             ),
+            Divider(),
             InkWell(
               onTap: () {
                 auth.signOut().whenComplete(() => Navigator.pushAndRemoveUntil(

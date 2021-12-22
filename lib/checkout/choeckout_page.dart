@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sahoolar_bazar/constants/constants.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:sahoolar_bazar/userpages/homepage.dart';
 import 'package:sahoolar_bazar/userpages/profile_page.dart';
 
 class CheckOutPage extends StatefulWidget {
@@ -227,6 +229,21 @@ class _CheckOutPageState extends State<CheckOutPage> {
               minWidth: double.infinity,
               shape: StadiumBorder(),
               onPressed: () {
+                // var u = auth.currentUser.uid;
+                // Stream<QuerySnapshot> checkcar = FirebaseFirestore.instance
+                //     .collection("cart")
+                //     .where("uid", isEqualTo: u)
+                //     .snapshots();
+                // checkcar.forEach((field) {
+                //   field.docs.asMap().forEach((index, data) {
+                //     setState(() {
+                //       for (QueryDocumentSnapshot snapshot in field.docs) {
+                //         snapshot.reference.delete();
+                //       }
+                //     });
+                //   });
+                // });
+
                 Future.delayed(Duration(seconds: 3), () {
                   if (globalKey.currentState.validate()) {
                     print(uC.text);
@@ -254,7 +271,9 @@ class _CheckOutPageState extends State<CheckOutPage> {
                         title: 'Congratulations',
                         btnOkColor: Colors.blue,
                         desc: 'Your Order Placed Successfully',
-                        btnOkOnPress: () {},
+                        btnOkOnPress: () {
+                          Get.to(HomePage());
+                        },
                       )..show().then((value) {
                           var u = auth.currentUser.uid;
                           Stream<QuerySnapshot> productRef = FirebaseFirestore

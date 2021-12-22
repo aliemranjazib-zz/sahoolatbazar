@@ -5,11 +5,14 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:sahoolar_bazar/adminside/adminlogin.dart';
 import 'package:sahoolar_bazar/components/progressbar.dart';
 import 'package:sahoolar_bazar/constants/constants.dart';
 import 'package:sahoolar_bazar/userpages/auth/signup_page.dart';
 import 'package:sahoolar_bazar/userpages/homepage.dart';
+
+import 'forgot_password.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -22,23 +25,61 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController pC = TextEditingController();
 
   saveform(BuildContext context) async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return ProgressBar(
-            title: 'loging in please wait...',
-          );
-        });
-    print(eC.text);
-    await auth
-        .signInWithEmailAndPassword(email: eC.text.trim(), password: pC.text)
-        .catchError((errmsg) {
-      Fluttertoast.showToast(msg: errmsg.toString());
-    });
-    var u = auth.currentUser.uid;
-    if (u != null) {
-      Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (c) => HomePage()), (route) => false);
+    if (globalKey.currentState.validate()) {
+      print(eC.text);
+      await auth
+          .signInWithEmailAndPassword(email: eC.text.trim(), password: pC.text)
+          .catchError((error) {
+        switch (error.code) {
+          case "ERROR_INVALID_EMAIL":
+            // errorMessage = "Your email address appears to be malformed.";
+            Fluttertoast.showToast(
+                msg: "Your email address appears to be malformed");
+            break;
+          case "ERROR_WRONG_PASSWORD":
+            // errorMessage = "Your password is wrong.";
+            Fluttertoast.showToast(msg: "Your password is wrong.");
+
+            break;
+          case "ERROR_USER_NOT_FOUND":
+            //errorMessage = "User with this email doesn't exist.";
+            Fluttertoast.showToast(msg: "User with this email doesn't exist.");
+
+            break;
+          case "ERROR_USER_DISABLED":
+            // errorMessage = "User with this email has been disabled.";
+            Fluttertoast.showToast(
+                msg: "User with this email has been disabled.");
+
+            break;
+          case "ERROR_TOO_MANY_REQUESTS":
+            //errorMessage = "Too many requests. Try again later.";
+            Fluttertoast.showToast(msg: "Too many requests. Try again later.");
+
+            break;
+          case "ERROR_OPERATION_NOT_ALLOWED":
+            // errorMessage = "Signing in with Email and Password is not enabled.";
+            Fluttertoast.showToast(
+                msg: "Signing in with Email and Password is not enabled.");
+
+            break;
+          // default:
+          //   // errorMessage = "An undefined Error happened.";
+          //   Fluttertoast.showToast(msg: "An undefined Error happened.");
+        }
+      });
+      var u = auth.currentUser.uid;
+      if (u != null) {
+        // showDialog(
+        //     context: context,
+        //     builder: (context) {
+        //       return ProgressBar(
+        //         title: 'please wait...',
+        //       );
+        //     });
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (c) => HomePage()), (route) => false);
+      }
     }
   }
 
@@ -92,10 +133,91 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     ),
                                   ),
-                                  component(Icons.email_outlined, 'Email...',
-                                      false, true, eC),
-                                  component(Icons.lock_outline, 'Password...',
-                                      true, false, pC),
+                                  Form(
+                                      key: globalKey,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(18.0),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: TextFormField(
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    value = eC.text;
+                                                  });
+                                                },
+                                                controller: eC,
+                                                validator: (input) =>
+                                                    input.isValidEmail()
+                                                        ? null
+                                                        : "Check your email",
+                                                decoration: InputDecoration(
+                                                  fillColor: Colors.black
+                                                      .withOpacity(.1),
+                                                  filled: true,
+                                                  prefixIcon: Icon(
+                                                    Icons.email,
+                                                    color: Colors.white
+                                                        .withOpacity(.8),
+                                                  ),
+                                                  border: InputBorder.none,
+                                                  hintMaxLines: 1,
+                                                  hintText: "Email...",
+                                                  hintStyle: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.white
+                                                        .withOpacity(.5),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: TextFormField(
+                                                obscureText: true,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    value = pC.text;
+                                                  });
+                                                },
+                                                controller: pC,
+                                                validator: (input) =>
+                                                    input.isNotEmpty
+                                                        ? null
+                                                        : "Check your password",
+                                                decoration: InputDecoration(
+                                                  fillColor: Colors.black
+                                                      .withOpacity(.1),
+                                                  filled: true,
+                                                  prefixIcon: Icon(
+                                                    Icons.lock_outline,
+                                                    color: Colors.white
+                                                        .withOpacity(.8),
+                                                  ),
+                                                  border: InputBorder.none,
+                                                  hintMaxLines: 1,
+                                                  hintText: "Password...",
+                                                  hintStyle: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.white
+                                                        .withOpacity(.5),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -109,10 +231,12 @@ class _LoginPageState extends State<LoginPage> {
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               HapticFeedback.lightImpact();
-                                              Fluttertoast.showToast(
-                                                msg:
-                                                    'Forgotten password! button pressed',
-                                              );
+                                              Get.to(ResetPasswordPage(
+                                                  title: 'Reset Password'));
+                                              // Fluttertoast.showToast(
+                                              //   msg:
+                                              //       'Forgotten password! button pressed',
+                                              // );
                                             },
                                         ),
                                       ),
@@ -169,9 +293,9 @@ class _LoginPageState extends State<LoginPage> {
                                     onTap: () {
                                       HapticFeedback.lightImpact();
                                       saveform(context);
-                                      Fluttertoast.showToast(
-                                        msg: 'Sign-In button pressed',
-                                      );
+                                      // Fluttertoast.showToast(
+                                      //   msg: 'Sign-In button pressed',
+                                      // );
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(

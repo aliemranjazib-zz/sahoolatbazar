@@ -177,9 +177,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     onTap: () {
                                       HapticFeedback.lightImpact();
                                       saveform(context);
-                                      Fluttertoast.showToast(
-                                        msg: 'Sign-Up button pressed',
-                                      );
+                                      // Fluttertoast.showToast(
+                                      //   msg: 'Sign-Up button pressed',
+                                      // );
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(
